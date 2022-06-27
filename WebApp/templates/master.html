@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Sales Forecast</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="http://cdn.jsdelivr.net/jquery.validation/1.15.0/jquery.validate.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">  
+
+    <style type="text/css">
+        .jumbotron{
+            height: 350px;
+            margin-top: 40px;
+            background-image: url("../static/sales_forecast.png");
+            background-size: cover;
+            color: black;
+            background-position: 0 50%;
+            opacity: 0.8;
+        }
+    </style>
+
+</head>
+
+<body>
+
+<!-- Navigation panel -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">Sales Forecast Project</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+</nav>
+
+<!-- page header -->
+
+<div class="container">
+<div class="jumbotron" >
+        <h1 class="text-center">Sales Forecast Using Ensemble Model</h1>
+        <p class="text-center">Forecast the monthly sales for russian retail shops and products</p>
+    </div>
+</div>
+
+
+<!--
+Information to be provided:
+    1. gender - user's gender
+    2. registration_date
+    3. avg_songs - average number of songs the user listens to per day
+    4. thumbsup_proportion - ratio of thumbs up events over thumbs down
+    5. num_add_friend - number of add friends events
+    6. avg_roll_adverts - average roll adverts per day
+    7. last_level - user's last level (paid or free)
+    8. last_location - location of the last event
+-->
+
+<!-- main area to enter customer's data -->
+
+<div class="h-100 d-flex justify-content-center align-items-center">
+ <div class="row">
+
+    <div class="mx-auto mb-4" style="width: 900px;">
+    
+       
+        {% block message %}
+        {% endblock %}
+               
+        <!-- input form for customer info -->
+        <form name="form" class="needs-validation ml-4 col-11" action="/go" method="get"  role="form">
+            
+            <!-- header of the input form -->
+            <h4 class="mb-3">Enter information:</h4>
+
+            <!--row_year_month-->
+            <div class="row">  
+                
+                <!-- current user level -->
+                <div class="mb-3 col-6">
+                    <label for="year">Year:</label>
+                    <select class="custom-select d-block" name="year" id="year" required>
+                        <option>2013</option>
+                        <option>2014</option>
+                        <option>2015</option>
+                    </select>
+                    <div class="invalid-feedback">
+                        Please select a valid year.
+                    </div>
+                </div>
+                
+                 <!-- current user location -->
+                <div class="mb-3 col-6">
+                    <label for="month">Month:</label>
+                    <select class="custom-select d-block" name="Month" id="Month" required>
+                        <option>01</option>
+                        <option>02</option>
+                        <option>03</option>
+                        <option>04</option>
+                        <option>05</option>
+                        <option>06</option>
+                        <option>07</option>
+                        <option>08</option>
+                        <option>09</option>
+                        <option>10</option>
+                        <option>11</option>
+                        <option>12</option>
+                    </select>
+                    <div class="invalid-feedback">
+                        Please select a valid month.
+                    </div>
+                </div>
+                
+            </div>
+
+            <!--row_shop_item-->
+            <div class="row">
+
+                <!-- shop -->
+                <div class="mb-3 col-6">
+                    <label for="shop">Choose Shop:</label>
+                    <select class="custom-select d-block" name="shop" id="shop" required>
+                        <option value="">Choose...</option>
+                        <option>Атриум</option>
+                        <option>МЕГА Теплый Стан</option>
+                        <option>Семеновский</option>
+                        <option>Невский Центр</option>
+                        <option>Якутск Орджоникидзе</option>
+                    </select>
+                    <div class="invalid-feedback">
+                        Please select a valid shop.
+                    </div>
+                </div>
+
+                 <!-- item -->
+                <div class="mb-3 col-6">
+                    <label for="item">Choose Item:</label>
+                    <select class="custom-select d-block" name="item" id="item" required>
+                        <option value="">Choose...</option>
+                        <option>ЗОЛОТАЯ КОЛЛЕКЦИЯ м/ф-72</option>
+                        <option>ОДНАЖДЫ В КИТАЕ-2</option>
+                        <option>СЕВЕР И ЮГ /Ч.2/</option>
+                        <option>007 Legends [PС, Jewel, русская версия]</option>
+                        <option>007: КООРДИНАТЫ «СКАЙФОЛЛ»</option>
+                        <option>10 ЛЕТ СПУСТЯ (регион)</option>
+                        <option>100 Best classical melodies (mp3-CD) (Digipack)</option>
+                        <option>100 любимых маленьких сказок (mp3-CD) (Jewel)</option>
+                        <option>11 ДРУЗЕЙ ОУШЕНА WB (BD)</option>
+                    </select>
+                    <div class="invalid-feedback">
+                        Please select a valid Item.
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Submit button -->
+            <button class="btn btn-primary btn-lg btn-block" type="submit">Predict</button>
+                
+        </form>
+        
+</div>
+</div>
+</div>
+
+
+
+</body>
+</html>
