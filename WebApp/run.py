@@ -17,7 +17,7 @@ app = Flask(__name__)
 #     .getOrCreate()
 
 # load model
-model = pickle.load(open('model/rf_model.sav', 'rb'))
+model = pickle.load(open('model/model.sav', 'rb'))
 
 
 # index webpage receives user input for the model
@@ -75,21 +75,18 @@ def go():
     # get spark context
     # sc = SparkContext.getOrCreate()
     #
-    # # create spark dataframe to predict customer churn using the model
-    # df = sc.parallelize([[gender, days_registered, last_state, avgSongs, last_level, Thumbsup_proportion,
-    #                       num_add_friend, avgrolladverts]]). \
-    #     toDF(["gender", "days_registered", "last_state", "avg_songs_per_day", "last_level", "Thumbsup_proportion",
-    #           "num_add_friend", "avg_roll_adv_per_day"])
+    # # create spark dataframe to predict sales per month using the ensemble model
+    # df = sc.parallelize([[shop_id, item_id, year, month]]). \
+    #     toDF(["shop_id", "item_id", "year", "month"])
     #
     # # set correct data types
-    # df = df.withColumn("days_registered", df["days_registered"].cast(IntegerType()))
-    # df = df.withColumn("avg_songs_per_day", df["avg_songs_per_day"].cast(DoubleType()))
-    # df = df.withColumn("Thumbsup_proportion", df["Thumbsup_proportion"].cast(DoubleType()))
-    # df = df.withColumn("num_add_friend", df["num_add_friend"].cast(IntegerType()))
-    # df = df.withColumn("avg_roll_adv_per_day", df["avg_roll_adv_per_day"].cast(DoubleType()))
+    # df = df.withColumn("shop_id", df["shop_id"].cast(IntegerType()))
+    # df = df.withColumn("item_id", df["item_id"].cast(IntegerType()))
+    # df = df.withColumn("year", df["year"].cast(IntegerType()))
+    # df = df.withColumn("month", df["month"].cast(IntegerType()))
 
     # predict using the model
-    # pred = rf_model.predict(df)
+    # pred = model.predict(df)
 
     # if pred.count() == 0:
     #     # if model failed to predict churn then return -1
@@ -98,7 +95,7 @@ def go():
     #     # get prediction (1 = churn, 0 = stay)
     #     prediction = pred.select(pred.prediction).collect()[0][0]
 
-    prediction = random.randint(0,20)
+    prediction = random.randint(0, 20)
 
     # print out prediction to the app console
     print("Prediction for the customer is {prediction}.".format(prediction=prediction))
